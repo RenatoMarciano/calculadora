@@ -24,8 +24,10 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
 
         holder.binding.textViewId.text = user.id.toString()
         holder.binding.textViewValorA.text = user.valor1.toString()
+        holder.binding.textViewOper.text = user.operacao.toString()
         holder.binding.textViewValorB.text = user.valor2.toString()
         holder.binding.textViewResult.text = user.resultado.toString()
+        holder.binding.textViewDataHora.text = user.dataHora.toString()
     }
 
     override fun getItemCount(): Int {

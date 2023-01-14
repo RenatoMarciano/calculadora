@@ -5,48 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textViewId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
-        android:textSize="34sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="ID" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textViewValorA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
-        android:textSize="34sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewId"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="ValorA" />
+        <TextView
+            android:id="@+id/textViewId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
 
-    <TextView
-        android:id="@+id/textViewValorB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
-        android:textSize="34sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewValorA"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="ValorB" />
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ID" />
 
-    <TextView
-        android:id="@+id/textViewResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginTop="50dp"
-        android:textSize="34sp"
-        app:layout_constraintStart_toEndOf="@+id/textViewValorB"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Result" />
+        <TextView
+            android:id="@+id/textViewValorA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textViewId"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ValorA" />
+
+        <TextView
+            android:id="@+id/textViewOper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textViewValorB"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Operação" />
+
+        <TextView
+            android:id="@+id/textViewValorB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textViewValorA"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ValorB" />
+
+        <TextView
+            android:id="@+id/textViewResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textViewOper"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Result" />
+
+        <TextView
+            android:id="@+id/textViewDataHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textViewOper"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Data" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

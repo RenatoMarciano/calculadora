@@ -12,6 +12,6 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addUser(calculadora: Calculadora)
 
-    @Query("SELECT * FROM user_table1 ORDER BY id ASC")
+    @Query("SELECT * FROM user_table ORDER BY id ASC")
     fun selectUsers(): LiveData<List<Calculadora>>
 }
