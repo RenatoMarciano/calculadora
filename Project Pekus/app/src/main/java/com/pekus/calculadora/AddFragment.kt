@@ -18,12 +18,10 @@ class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
     private lateinit var mainViewModel: MainViewModel
     var resultado = 0
-    var operacao = ""
 
     var timestam = Date().time
     val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
     val dataHora = sdf.format(timestam)
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,85 +33,59 @@ class AddFragment : Fragment() {
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         binding.btnAdicao.setOnClickListener {
-            operacao = "+"
-
-            if (binding.editTextValorA.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo A.", Toast.LENGTH_LONG).show()
-            } else if (binding.editTextValorB.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo B.", Toast.LENGTH_LONG).show()
-            } else {
-                val valor1 = binding.editTextValorA.text.toString()
-                val valor2 = binding.editTextValorB.text.toString()
-
-                resultado = (valor1.toInt() + valor2.toInt())
-
-                inserirNoBanco()
-            }
+            calcular("+")
         }
 
         binding.btnSubtracao.setOnClickListener {
-            operacao = "-"
-
-            if (binding.editTextValorA.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo A.", Toast.LENGTH_LONG).show()
-            } else if (binding.editTextValorB.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo B.", Toast.LENGTH_LONG).show()
-            } else {
-                val valor1 = binding.editTextValorA.text.toString()
-                val valor2 = binding.editTextValorB.text.toString()
-
-                resultado = (valor1.toInt() - valor2.toInt())
-
-                inserirNoBanco()
-            }
+            calcular("-")
         }
 
         binding.btnMultiplicacao.setOnClickListener {
-            operacao = "*"
-
-            if (binding.editTextValorA.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo A.", Toast.LENGTH_LONG).show()
-            } else if (binding.editTextValorB.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo B.", Toast.LENGTH_LONG).show()
-            } else {
-                val valor1 = binding.editTextValorA.text.toString()
-                val valor2 = binding.editTextValorB.text.toString()
-
-                resultado = (valor1.toInt() * valor2.toInt())
-
-                inserirNoBanco()
-            }
+            calcular("*")
         }
 
         binding.btnDivisao.setOnClickListener {
-            operacao = "/"
-
-            if (binding.editTextValorA.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo A.", Toast.LENGTH_LONG).show()
-            } else if (binding.editTextValorB.text.isNullOrEmpty()) {
-                Toast.makeText(context, "Informe o campo B.", Toast.LENGTH_LONG).show()
-            } else {
-                val valor1 = binding.editTextValorA.text.toString()
-                val valor2 = binding.editTextValorB.text.toString()
-
-                resultado = (valor1.toInt() / valor2.toInt())
-
-                inserirNoBanco()
-            }
+            calcular("/")
         }
-
         return binding.root
     }
 
-    fun inserirNoBanco() {
-
-        val valor1 = binding.editTextValorA.text.toString()
-        val valor2 = binding.editTextValorB.text.toString()
-
-        val user = Calculadora(0, valor1.toInt(), operacao, valor2.toInt(),  resultado, dataHora)
+    fun inserirNoBanco(valor1: String, valor2: String, operation: String) {
+        val user = Calculadora(0, valor1.toInt(), operation, valor2.toInt(), resultado, dataHora)
         mainViewModel.addUser(user)
         Toast.makeText(context, "Cálculo armazenado com sucesso", Toast.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_addFragment_to_listFragment)
     }
 
+    fun validarCampos(valorOne: String, valorTwo: String): Boolean {
+        if (valorOne == "") {
+            Toast.makeText(context, "Informe o campo A.", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if (valorTwo == "") {
+            Toast.makeText(context, "Informe o campo B.", Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
+    }
+
+    fun calcular(calc: String) {
+        val valor1 = binding.editTextValorA.text.toString()
+        val valor2 = binding.editTextValorB.text.toString()
+
+        val response = validarCampos(valor1, valor2)
+
+        if (response) {
+            if (calc == "+") {
+                resultado = (valor1.toInt() + valor2.toInt())
+            } else if (calc == "-") {
+                resultado = (valor1.toInt() - valor2.toInt())
+            } else if (calc == "*") {
+                resultado = (valor1.toInt() * valor2.toInt())
+            } else {
+                resultado = (valor1.toInt() / valor2.toInt())
+            }
+            inserirNoBanco(valor1, valor2, calc)
+        }
+    }
 }
